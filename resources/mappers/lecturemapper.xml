@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.LectureMapper">
+    <select id="getItemList" resultType="LectureDto">
+        select * from lecture
+    </select>
+    <delete id="deleteItem">
+        delete from lecture where lecNo=${lecNo}
+    </delete>
+    <insert id="addItem">
+        insert into lecture(lecCategory, lecName, lecPrice, lecRegDate, lecImg) VALUES(#{lecCategory}, #{lecName}, #{lecPrice}, now(), #{lecImg})
+    </insert>
+    <select id="selectItem" resultType="LectureDto">
+        select * from lecture where lecNo=${lecNo}
+    </select>
+    <update id="editItem">
+        update lecture set lecCategory=#{lecCategory}, lecName=#{lecName}, lecPrice=#{lecPrice}, lecImg=#{lecImg} where lecNo=#{lecNo}
+    </update>
+    <update id="editItemWithoutImage">
+        update lecture set lecCategory=#{lecCategory}, lecName=#{lecName}, lecPrice=#{lecPrice} where lecNo=#{lecNo}
+    </update>
+</mapper>
